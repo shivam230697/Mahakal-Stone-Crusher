@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}
+<div class="d-flex justify-content-between mb-3"><div><h3>{{ page_title }}</h3><p class="text-secondary mb-0">Own quarry extraction: weighbridge and trip-based records</p></div><a class="btn btn-primary" href="{% url 'mining_add' %}">Add mining entry</a></div>
+<div class="card border-0 shadow-sm table-responsive"><table class="table table-striped mb-0"><thead><tr><th>Date</th><th>Entry</th><th>Vehicle</th><th>Method</th><th>Trips</th><th>Gross</th><th>Tare</th><th>Quantity</th><th>Unit</th><th>Diesel L</th><th>Excavator hrs</th></tr></thead><tbody>
+{% for r in rows %}<tr><td>{{ r.date|date:"d-m-Y H:i" }}</td><td>{{ r.entry_no }}</td><td>{{ r.vehicle_no }}</td><td>{{ r.get_measurement_method_display }}</td><td>{{ r.trip_count }}</td><td>{{ r.gross_weight }}</td><td>{{ r.tare_weight }}</td><td class="fw-semibold">{{ r.quantity }}</td><td>{{ r.quantity_unit }}</td><td>{{ r.diesel_litres }}</td><td>{{ r.excavator_hours }}</td></tr>{% empty %}<tr><td colspan="11" class="text-center p-4">No mining entries yet</td></tr>{% endfor %}
+</tbody></table></div>{% endblock %}

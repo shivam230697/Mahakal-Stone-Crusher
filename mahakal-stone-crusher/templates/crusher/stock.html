@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}<h3 class="mb-3">{{ page_title }}</h3>
+<div class="alert alert-info">MT and CFT are shown separately. The system does not combine them unless an approved product-specific conversion factor is configured.</div>
+<div class="card border-0 shadow-sm table-responsive"><table class="table table-striped mb-0"><thead><tr><th>Product</th><th>Unit</th><th>Mining</th><th>Other inward</th><th>Produced</th><th>Dispatched</th><th>Raw material used</th><th>Balance</th></tr></thead><tbody>
+{% for r in data %}<tr><td class="fw-semibold">{{ r.product.name }}</td><td>{{ r.unit }}</td><td>{{ r.mining|floatformat:3 }}</td><td>{{ r.inward|floatformat:3 }}</td><td>{{ r.produced|floatformat:3 }}</td><td>{{ r.outward|floatformat:3 }}</td><td>{{ r.raw_used|floatformat:3 }}</td><td class="fw-bold">{{ r.balance|floatformat:3 }}</td></tr>{% empty %}<tr><td colspan="8" class="text-center p-4">No stock movements yet</td></tr>{% endfor %}
+</tbody></table></div>{% endblock %}
