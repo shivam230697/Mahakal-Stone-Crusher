@@ -1,12 +1,15 @@
+
 databases:
   - name: mahakal-stone-db
     plan: free
     databaseName: mahakal_stone
     user: mahakal_user
+
 services:
   - type: web
     name: mahakal-stone-crusher
     runtime: python
+    plan: free
     buildCommand: "./build.sh"
     startCommand: "gunicorn mahakal_erp.wsgi:application --bind 0.0.0.0:$PORT"
     envVars:
